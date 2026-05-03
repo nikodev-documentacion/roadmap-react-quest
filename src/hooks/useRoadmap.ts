@@ -12,7 +12,6 @@ export interface RoadmapState {
   earnedXP: number;
   foxFacing: "left" | "right";
   foxState: "idle" | "walk" | "victory";
-  shake: boolean;
   isAtFinal: boolean;
   arrivalTick: number | null;
   goTo: (index: number, opts?: { silent?: boolean }) => void;
@@ -32,7 +31,6 @@ export function useRoadmap(): RoadmapState {
   const [visited, setVisited] = useState<Set<number>>(new Set([0]));
   const [foxFacing, setFoxFacing] = useState<"left" | "right">("right");
   const [foxState, setFoxState] = useState<"idle" | "walk" | "victory">("idle");
-  const [shake, setShake] = useState(false);
   const [arrivalTick, setArrivalTick] = useState<number | null>(null);
 
   const total = STAGES.length;
@@ -119,7 +117,6 @@ export function useRoadmap(): RoadmapState {
     earnedXP,
     foxFacing,
     foxState,
-    shake,
     isAtFinal: currentIndex === FINAL_STAGE_INDEX,
     arrivalTick,
     goTo,

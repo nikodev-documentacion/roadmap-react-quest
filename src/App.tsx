@@ -24,7 +24,6 @@ export function App() {
       className="fixed inset-0 overflow-hidden scanlines"
       style={{
         background: "var(--night-0)",
-        animation: roadmap.shake ? "screen-shake 0.2s steps(4)" : "none",
       }}
     >
       <ForestBackground />
