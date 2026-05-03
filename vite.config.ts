@@ -7,7 +7,7 @@ import path from "path";
 // set the env variable VITE_BASE or change the `base` below to "/<repo-name>/".
 // For user/organization sites (USER.github.io) leave it as "/".
 export default defineConfig(({ mode }) => ({
-  base: process.env.VITE_BASE ?? "/react-roadmap-kitsune/",
+  base: process.env.VITE_BASE ?? "/roadmap-react-quest/",
   plugins: [react()],
   resolve: {
     alias: {
