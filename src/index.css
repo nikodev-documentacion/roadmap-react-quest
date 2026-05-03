@@ -1,0 +1,202 @@
+/* React Quest - Pixel art global styles */
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Pixel palette - night forest (default) */
+    --night-0: #0a0e1a;
+    --night-1: #131a2c;
+    --night-2: #1f2a44;
+    --night-3: #2a3a5e;
+    --moon: #f4f1c1;
+    --moon-glow: #fffbe0;
+    --leaf-1: #2d5a3d;
+    --leaf-2: #3d7a52;
+    --leaf-3: #5aa372;
+    --trunk: #3d2a1f;
+    --fox-orange: #e87a3a;
+    --fox-cream: #f4dcb8;
+    --fox-dark: #4a2818;
+    --accent-cyan: #5ae0e0;
+    --accent-pink: #e85a8a;
+    --xp-gold: #f4c430;
+    --health-red: #e84a4a;
+
+    /* shadcn semantic tokens (HSL channels) */
+    --background: 222 40% 8%;
+    --foreground: 56 60% 86%;
+    --card: 222 40% 12%;
+    --card-foreground: 56 60% 86%;
+    --primary: 50 90% 56%;
+    --primary-foreground: 222 50% 8%;
+    --secondary: 222 40% 18%;
+    --secondary-foreground: 56 60% 86%;
+    --muted: 222 30% 22%;
+    --muted-foreground: 56 20% 70%;
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 56 30% 60%;
+    --input: 222 40% 18%;
+    --ring: 50 90% 56%;
+    --radius: 0px;
+  }
+
+  [data-aesthetic="synthwave"] {
+    --night-0: #0a0420;
+    --night-1: #1a0d3a;
+    --night-2: #2d1657;
+    --night-3: #3d2278;
+    --moon: #ff6ec7;
+    --moon-glow: #ffaee5;
+    --leaf-1: #5a2d8a;
+    --leaf-2: #8a4dbf;
+    --leaf-3: #c47aff;
+    --fox-orange: #ff6ec7;
+    --fox-cream: #5ae0ff;
+    --accent-cyan: #5ae0ff;
+    --xp-gold: #ffd93d;
+  }
+
+  [data-aesthetic="dawn"] {
+    --night-0: #1a1410;
+    --night-1: #2a1f18;
+    --night-2: #3d2e22;
+    --night-3: #5a4530;
+    --moon: #ffb86b;
+    --moon-glow: #ffd9a0;
+    --leaf-1: #3d4a1f;
+    --leaf-2: #5a7028;
+    --leaf-3: #8aa840;
+    --xp-gold: #ffb86b;
+  }
+
+  * {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    -webkit-font-smoothing: none;
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: "VT323", monospace;
+    background: var(--night-0);
+    color: var(--moon);
+    overflow: hidden;
+    user-select: none;
+  }
+
+  .font-pixel {
+    font-family: "Press Start 2P", monospace;
+    letter-spacing: 0.05em;
+  }
+}
+
+@layer components {
+  .pixel-panel {
+    background: var(--night-1);
+    border: 3px solid var(--moon);
+    position: relative;
+    box-shadow:
+      inset 3px 3px 0 rgba(255, 255, 255, 0.08),
+      inset -3px -3px 0 rgba(0, 0, 0, 0.4),
+      4px 4px 0 rgba(0, 0, 0, 0.6);
+  }
+
+  .pixel-btn {
+    font-family: "Press Start 2P", monospace;
+    background: var(--night-2);
+    color: var(--moon);
+    border: 3px solid var(--moon);
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    transition: transform 0.05s;
+    box-shadow:
+      inset 2px 2px 0 rgba(255, 255, 255, 0.15),
+      inset -2px -2px 0 rgba(0, 0, 0, 0.4),
+      3px 3px 0 #000;
+  }
+  .pixel-btn:hover:not(:disabled) {
+    background: var(--night-3);
+    color: var(--moon-glow);
+  }
+  .pixel-btn:active:not(:disabled) {
+    transform: translate(2px, 2px);
+    box-shadow:
+      inset 2px 2px 0 rgba(255, 255, 255, 0.15),
+      inset -2px -2px 0 rgba(0, 0, 0, 0.4),
+      1px 1px 0 #000;
+  }
+  .pixel-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .scanlines::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.15) 0px,
+      rgba(0, 0, 0, 0.15) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    z-index: 100;
+  }
+  .scanlines::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.4) 100%);
+    z-index: 101;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+@keyframes star-twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+@keyframes fog-drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes screen-shake {
+  0%, 100% { transform: translate(0,0); }
+  25% { transform: translate(-2px, 1px); }
+  50% { transform: translate(2px, -1px); }
+  75% { transform: translate(-1px, 2px); }
+}
+@keyframes particle-up {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-40px) scale(0); opacity: 0; }
+}
+@keyframes kitsune-victory {
+  0%, 100% { transform: translateY(0) scale(1) rotate(0); }
+  20% { transform: translateY(-2px) scale(1.05) rotate(-3deg); }
+  40% { transform: translateY(-12px) scale(1.08) rotate(0); }
+  60% { transform: translateY(-4px) scale(1.05) rotate(3deg); }
+  80% { transform: translateY(-1px) scale(1) rotate(-2deg); }
+}
+@keyframes kitsune-sparkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.4); }
+}
+@keyframes victory-banner {
+  0% { transform: translate(-50%, 30px) scale(0.5); opacity: 0; }
+  60% { transform: translate(-50%, 0) scale(1.1); opacity: 1; }
+  100% { transform: translate(-50%, 0) scale(1); opacity: 1; }
+}
