@@ -12,7 +12,7 @@ interface HUDProps {
 export function HUD({ stage, currentIndex, total, earnedXP, totalXP }: HUDProps) {
   const xpPct = (earnedXP / totalXP) * 100;
   return (
-    <div className="absolute top-4 left-4 right-4 z-50 flex gap-4 items-start pointer-events-none">
+    <div className="absolute top-16 left-4 right-4 z-5 flex gap-4 items-start pointer-events-none">
       {/* Player card */}
       <div className="pixel-panel pointer-events-auto" style={{ padding: "10px 14px", minWidth: 220 }}>
         <div className="font-pixel" style={{ fontSize: 10, color: "var(--xp-gold)", marginBottom: 6 }}>
