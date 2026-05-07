@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useRoadmap } from "@/hooks/useRoadmap";
 import { useSettings } from "@/hooks/useSettings";
 import { retroSound } from "@/lib/sound";
-import { ForestBackground, Kitsune } from "@/components/scene/Forest";
+import { ForestBackground, Lua } from "@/components/scene/Forest";
 import { StageMarker } from "@/components/scene/StageMarker";
 import { HUD } from "@/components/scene/HUD";
 import { ConceptPanel } from "@/components/scene/ConceptPanel";
@@ -81,7 +81,7 @@ export function App() {
           filter: "drop-shadow(2px 4px 0 rgba(0,0,0,0.6))",
         }}
       >
-        <Kitsune size={56} facing={roadmap.foxFacing} state={roadmap.foxState} />
+        <Lua size={56} facing={roadmap.foxFacing} state={roadmap.foxState} />
       </div>
 
       <HUD
@@ -102,14 +102,7 @@ export function App() {
         onNext={roadmap.next}
       />
 
-      <div
-        className="font-pixel absolute left-1/2 -translate-x-1/2 z-10"
-        style={{ top: 100, fontSize: 6, color: "var(--moon)", opacity: 0.5, letterSpacing: "0.15em" }}
-      >
-        ← → · CLICK STAGE · 1-8 JUMP
-      </div>
-
-      <SettingsPanel settings={settings} setSetting={setSetting} />
+<SettingsPanel settings={settings} setSetting={setSetting} />
 
       {/* Victory banner - appears at the final stage */}
       {roadmap.isAtFinal && (
@@ -135,7 +128,7 @@ export function App() {
               ★ ¡VICTORIA! ★
             </div>
             <div className="font-pixel" style={{ fontSize: 7, color: "var(--moon-glow)" }}>
-              EL KITSUNE ALCANZÓ LA CIMA
+              LUA ALCANZÓ LA CIMA
             </div>
           </div>
         </div>

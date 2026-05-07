@@ -52,46 +52,7 @@ export function HUD({ stage, currentIndex, total, earnedXP, totalXP }: HUDProps)
         </div>
       </div>
 
-      {/* Title */}
-      <div className="flex-1 text-center">
-        <div
-          className="font-pixel"
-          style={{
-            fontSize: 9,
-            color: "var(--moon-glow)",
-            textShadow: "2px 2px 0 #000, 0 0 8px var(--moon-glow)",
-            opacity: 0.9,
-          }}
-        >
-          {roadmapData.meta.title}
-        </div>
-        <div
-          className="font-pixel mt-1"
-          style={{ fontSize: 7, color: "var(--xp-gold)", textShadow: "1px 1px 0 #000" }}
-        >
-          {roadmapData.meta.subtitle}
-        </div>
-      </div>
 
-      {/* Stage counter */}
-      <div className="pixel-panel pointer-events-auto text-right" style={{ padding: "10px 14px" }}>
-        <div className="font-pixel" style={{ fontSize: 6, color: "var(--moon)", opacity: 0.7, marginBottom: 4 }}>
-          STAGE
-        </div>
-        <div className="font-pixel" style={{ fontSize: 14, color: "var(--xp-gold)" }}>
-          {String(currentIndex + 1).padStart(2, "0")}
-          <span style={{ fontSize: 8, color: "var(--moon)", opacity: 0.6 }}>
-            {" "}
-            / {String(total).padStart(2, "0")}
-          </span>
-        </div>
-        <div
-          className="font-pixel mt-1"
-          style={{ fontSize: 6, color: "var(--moon)", maxWidth: 140, lineHeight: 1.4 }}
-        >
-          {stage.biome.toUpperCase()}
-        </div>
-      </div>
     </div>
   );
 }

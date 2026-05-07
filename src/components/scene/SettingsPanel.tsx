@@ -17,7 +17,7 @@ export function SettingsPanel({ settings, setSetting }: SettingsPanelProps) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="absolute z-50" style={{ top: 16, right: 16, marginTop: 110 }}>
+    <div className="absolute z-50" style={{ bottom: 16, right: 16 }}>
       {!open && (
         <button
           className="pixel-btn"

@@ -21,6 +21,12 @@
     --fox-orange: #e87a3a;
     --fox-cream: #f4dcb8;
     --fox-dark: #4a2818;
+    --lua-black: #252020;
+    --lua-fur: #4a3e3a;
+    --lua-highlight: #6a5a54;
+    --lua-chest: #7a6860;
+    --lua-eyes: #c87030;
+    --lua-collar: #3a88d0;
     --accent-cyan: #5ae0e0;
     --accent-pink: #e85a8a;
     --xp-gold: #f4c430;
@@ -57,6 +63,12 @@
     --leaf-3: #c47aff;
     --fox-orange: #ff6ec7;
     --fox-cream: #5ae0ff;
+    --lua-black: #1a1020;
+    --lua-fur: #2d2040;
+    --lua-highlight: #3d2d5a;
+    --lua-chest: #3a2a50;
+    --lua-eyes: #ff6ec7;
+    --lua-collar: #5ae0ff;
     --accent-cyan: #5ae0ff;
     --xp-gold: #ffd93d;
   }

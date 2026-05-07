@@ -1,16 +1,12 @@
 import { useMemo } from "react";
 
-interface KitsuneProps {
+interface LuaProps {
   size?: number;
   facing?: "left" | "right";
   state?: "idle" | "walk" | "victory";
 }
 
-/**
- * Kitsune - original ninja-fox character (NOT a copy of any branded character).
- * Pure SVG so it scales crisply with `image-rendering: pixelated`.
- */
-export function Kitsune({ size = 56, facing = "right", state = "idle" }: KitsuneProps) {
+export function Lua({ size = 56, facing = "right", state = "idle" }: LuaProps) {
   const flip = facing === "left" ? "scaleX(-1)" : "scaleX(1)";
   const wrapperAnimation =
     state === "victory"
@@ -30,7 +26,7 @@ export function Kitsune({ size = 56, facing = "right", state = "idle" }: Kitsune
         filter:
           state === "victory"
             ? "drop-shadow(0 0 12px var(--xp-gold)) drop-shadow(0 0 4px var(--moon-glow))"
-            : undefined,
+            : "drop-shadow(1px 0 0 rgba(255,240,200,0.25)) drop-shadow(-1px 0 0 rgba(255,240,200,0.25)) drop-shadow(0 1px 0 rgba(255,240,200,0.25)) drop-shadow(0 -1px 0 rgba(255,240,200,0.25)) drop-shadow(0 2px 6px rgba(0,0,0,0.9))",
       }}
     >
       <svg
@@ -40,7 +36,7 @@ export function Kitsune({ size = 56, facing = "right", state = "idle" }: Kitsune
         shapeRendering="crispEdges"
         style={{ imageRendering: "pixelated", overflow: "visible" }}
       >
-        {/* Victory aura - radiating sparkles */}
+        {/* Victory aura */}
         {state === "victory" && (
           <g style={{ animation: "kitsune-sparkle 1s linear infinite" }}>
             <rect x="4" y="6" width="1" height="1" fill="var(--xp-gold)" />
@@ -51,58 +47,74 @@ export function Kitsune({ size = 56, facing = "right", state = "idle" }: Kitsune
             <rect x="26" y="22" width="1" height="1" fill="var(--moon-glow)" />
           </g>
         )}
-        {/* Tail */}
-        <g style={{ transformOrigin: "10px 22px", animation: "fox-tail 0.6s ease-in-out infinite" }}>
-          <rect x="2" y="18" width="2" height="2" fill="var(--fox-orange)" />
-          <rect x="4" y="17" width="2" height="2" fill="var(--fox-orange)" />
-          <rect x="6" y="18" width="2" height="2" fill="var(--fox-orange)" />
-          <rect x="2" y="20" width="2" height="2" fill="var(--fox-cream)" />
-          <rect x="4" y="19" width="2" height="2" fill="var(--fox-orange)" />
-          <rect x="6" y="20" width="2" height="2" fill="var(--fox-orange)" />
-          <rect x="3" y="16" width="2" height="2" fill="var(--fox-cream)" />
+
+        {/* Tail - fluffy, curled upward (happy dog) */}
+        <g style={{ transformOrigin: "7px 20px", animation: "fox-tail 0.8s ease-in-out infinite" }}>
+          <rect x="5" y="17" width="3" height="5" fill="var(--lua-fur)" />
+          <rect x="3" y="13" width="3" height="5" fill="var(--lua-black)" />
+          <rect x="3" y="9" width="3" height="5" fill="var(--lua-fur)" />
+          <rect x="4" y="7" width="2" height="3" fill="var(--lua-highlight)" />
+          {/* Fluffy texture */}
+          <rect x="4" y="12" width="1" height="1" fill="var(--lua-highlight)" />
+          <rect x="5" y="8" width="1" height="1" fill="var(--lua-highlight)" />
+          <rect x="3" y="16" width="1" height="1" fill="var(--lua-highlight)" />
         </g>
 
         {/* Body */}
-        <rect x="9" y="17" width="12" height="6" fill="var(--fox-orange)" />
-        <rect x="9" y="22" width="12" height="2" fill="var(--fox-dark)" />
-        <rect x="11" y="20" width="8" height="2" fill="var(--fox-cream)" />
+        <rect x="7" y="17" width="13" height="7" fill="var(--lua-black)" />
+        <rect x="7" y="22" width="13" height="2" fill="var(--lua-fur)" />
+        {/* Chest patch (lighter, like in the photo) */}
+        <rect x="8" y="19" width="5" height="4" fill="var(--lua-chest)" />
+        {/* Fur texture */}
+        <rect x="14" y="18" width="2" height="1" fill="var(--lua-fur)" />
+        <rect x="17" y="19" width="2" height="2" fill="var(--lua-fur)" />
+        <rect x="9" y="17" width="1" height="2" fill="var(--lua-fur)" />
 
         {/* Legs */}
-        <rect x="10" y="24" width="2" height="3" fill="var(--fox-dark)" />
-        <rect x="14" y="24" width="2" height="3" fill="var(--fox-dark)" />
-        <rect x="18" y="24" width="2" height="3" fill="var(--fox-dark)" />
-        <rect x="10" y="27" width="2" height="1" fill="#000" />
-        <rect x="14" y="27" width="2" height="1" fill="#000" />
-        <rect x="18" y="27" width="2" height="1" fill="#000" />
+        <rect x="9" y="24" width="2" height="3" fill="var(--lua-fur)" />
+        <rect x="13" y="24" width="2" height="3" fill="var(--lua-fur)" />
+        <rect x="17" y="24" width="2" height="3" fill="var(--lua-fur)" />
+        {/* Paws */}
+        <rect x="9" y="27" width="2" height="1" fill="var(--lua-black)" />
+        <rect x="13" y="27" width="2" height="1" fill="var(--lua-black)" />
+        <rect x="17" y="27" width="2" height="1" fill="var(--lua-black)" />
 
-        {/* Head */}
-        <rect x="18" y="10" width="9" height="8" fill="var(--fox-orange)" />
-        <rect x="20" y="14" width="6" height="3" fill="var(--fox-cream)" />
-        <rect x="25" y="14" width="3" height="2" fill="var(--fox-cream)" />
-        <rect x="27" y="13" width="1" height="1" fill="#000" />
+        {/* Head - rounder than fox */}
+        <rect x="17" y="9" width="11" height="9" fill="var(--lua-black)" />
+        {/* Top rounded */}
+        <rect x="18" y="8" width="9" height="1" fill="var(--lua-black)" />
+        {/* Fur texture on head */}
+        <rect x="18" y="10" width="2" height="1" fill="var(--lua-fur)" />
+        <rect x="22" y="11" width="1" height="1" fill="var(--lua-fur)" />
+        <rect x="20" y="9" width="1" height="1" fill="var(--lua-fur)" />
 
-        {/* Ears */}
-        <rect x="18" y="8" width="2" height="3" fill="var(--fox-orange)" />
-        <rect x="19" y="9" width="1" height="1" fill="var(--fox-cream)" />
-        <rect x="24" y="8" width="2" height="3" fill="var(--fox-orange)" />
-        <rect x="24" y="9" width="1" height="1" fill="var(--fox-cream)" />
+        {/* Muzzle (short, scruffy) */}
+        <rect x="25" y="13" width="4" height="4" fill="var(--lua-fur)" />
+        <rect x="27" y="12" width="2" height="1" fill="var(--lua-fur)" />
+        {/* Nose */}
+        <rect x="28" y="13" width="1" height="1" fill="#0a0505" />
 
-        {/* Ninja headband */}
-        <rect x="17" y="11" width="10" height="2" fill="#c84040" />
-        <rect x="17" y="12" width="10" height="1" fill="#8a2020" />
-        <rect x="16" y="11" width="1" height="3" fill="#c84040" />
-        <rect x="15" y="13" width="1" height="2" fill="#c84040" />
+        {/* Ears - tall and pointy like Lua's */}
+        <rect x="18" y="4" width="3" height="6" fill="var(--lua-black)" />
+        <rect x="19" y="5" width="1" height="4" fill="var(--lua-fur)" />
+        <rect x="23" y="4" width="3" height="6" fill="var(--lua-black)" />
+        <rect x="24" y="5" width="1" height="4" fill="var(--lua-fur)" />
 
-        {/* Eye */}
-        <rect x="22" y="13" width="2" height="1" fill="#000" />
-        <rect x="23" y="13" width="1" height="1" fill="var(--accent-cyan)" style={{ animation: "blink 4s infinite" }} />
+        {/* Eyes - warm amber like Lua's */}
+        <rect x="21" y="12" width="3" height="2" fill="var(--lua-eyes)" />
+        <rect x="22" y="11" width="1" height="1" fill="var(--lua-black)" />
+        <rect x="22" y="13" width="1" height="1" fill="#c86828" style={{ animation: "blink 4s infinite" }} />
 
-        {/* Mask */}
-        <rect x="20" y="15" width="6" height="2" fill="var(--night-2)" opacity="0.6" />
+        {/* Collar - blue like in the photos */}
+        <rect x="18" y="17" width="9" height="1" fill="var(--lua-collar)" />
+        <rect x="22" y="18" width="2" height="1" fill="var(--lua-collar)" />
       </svg>
     </div>
   );
 }
+
+/** @deprecated Use Lua instead */
+export const Kitsune = Lua;
 
 interface PixelTreeProps {
   x: string;
