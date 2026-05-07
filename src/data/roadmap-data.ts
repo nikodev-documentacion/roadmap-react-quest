@@ -53,8 +53,8 @@ export const roadmapData: RoadmapData = {
   meta: {
     title: "REACT QUEST",
     subtitle: "~ ROADMAP DEL KITSUNE ~",
-    author: "NIKODEV",
-    playerLabel: "REACT NINJA",
+    author: "REACT QUEST",
+    playerLabel: "REACT QUEST",
     totalDurationWeeks: 12, // 8 semanas de stages + 4 semanas proyecto final
     totalEstimatedHours: 80, // Calculado automáticamente más abajo
   },
@@ -66,7 +66,7 @@ export const roadmapData: RoadmapData = {
       biome: "Entrada del bosque",
       description:
         "Aprende a inicializar proyectos React desde cero, entendiendo cada pieza. Sin magia, sin create-react-app: construcción manual para dominar los fundamentos.",
-      xp: 150,
+      xp: 100,
       estimatedHours: 8,
       suggestedWeek: "Semana 1",
       concepts: [
@@ -91,6 +91,7 @@ export const roadmapData: RoadmapData = {
       xp: 200,
       estimatedHours: 10,
       suggestedWeek: "Semana 2",
+
       concepts: [
         "🧱 Function Components - anatomía completa",
         "📬 Props: comunicación entre componentes",
@@ -110,7 +111,7 @@ export const roadmapData: RoadmapData = {
       biome: "Río de luciérnagas",
       description:
         "Tu UI cobra vida. Maneja el estado local, responde a eventos del usuario y aprende los patrones fundamentales de interactividad.",
-      xp: 250,
+      xp: 300,
       estimatedHours: 12,
       suggestedWeek: "Semana 3",
       concepts: [
@@ -132,7 +133,7 @@ export const roadmapData: RoadmapData = {
       biome: "Templo abandonado",
       description:
         "Sincroniza tus componentes con el mundo exterior: APIs, timers, suscripciones. Entiende el ciclo de vida en profundidad.",
-      xp: 300,
+      xp: 400,
       estimatedHours: 12,
       suggestedWeek: "Semana 4",
       concepts: [
@@ -154,7 +155,7 @@ export const roadmapData: RoadmapData = {
       biome: "Cueva de cristales",
       description:
         "Comparte estado entre componentes lejanos sin prop drilling. Aprende cuándo usar Context y cuándo no.",
-      xp: 300,
+      xp: 450,
       estimatedHours: 10,
       suggestedWeek: "Semana 5",
       concepts: [
@@ -176,7 +177,7 @@ export const roadmapData: RoadmapData = {
       biome: "Bosque de bambú",
       description:
         "Extrae lógica reutilizable en hooks propios. El camino del ninja senior: código limpio, reutilizable y testeable.",
-      xp: 350,
+      xp: 500,
       estimatedHours: 10,
       suggestedWeek: "Semana 6",
       concepts: [
@@ -198,7 +199,7 @@ export const roadmapData: RoadmapData = {
       biome: "Encrucijada de piedra",
       description:
         "Múltiples páginas, rutas dinámicas, navegación programática. Construye SPAs completas con React Router.",
-      xp: 350,
+      xp: 550,
       estimatedHours: 10,
       suggestedWeek: "Semana 7",
       concepts: [
@@ -220,7 +221,7 @@ export const roadmapData: RoadmapData = {
       biome: "Jardín zen",
       description:
         "Formularios robustos, validación en tiempo real, manejo de errores. Las bases para cualquier aplicación real.",
-      xp: 350,
+      xp: 600,
       estimatedHours: 8,
       suggestedWeek: "Semana 8",
       concepts: [
@@ -242,7 +243,7 @@ export const roadmapData: RoadmapData = {
       biome: "Montaña sagrada",
       description:
         "Integra todo lo aprendido en un proyecto real. Cuatro semanas para construir, pulir y deployar tu obra maestra.",
-      xp: 500,
+      xp: 900,
       estimatedHours: 40,
       suggestedWeek: "Semanas 9-12",
       concepts: [

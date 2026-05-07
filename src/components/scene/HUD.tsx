@@ -9,7 +9,7 @@ interface HUDProps {
   totalXP: number;
 }
 
-export function HUD({ currentIndex, stage: _s, total: _t, earnedXP, totalXP }: HUDProps) {
+export function HUD({ currentIndex: _ci, stage: _s, total: _t, earnedXP, totalXP }: HUDProps) {
   const xpPct = (earnedXP / totalXP) * 100;
   return (
     <div className="absolute top-16 left-4 right-4 z-5 flex gap-4 items-start pointer-events-none">
@@ -18,9 +18,7 @@ export function HUD({ currentIndex, stage: _s, total: _t, earnedXP, totalXP }: H
         <div className="font-pixel" style={{ fontSize: 10, color: "var(--xp-gold)", marginBottom: 6 }}>
           ★ {roadmapData.meta.author}
         </div>
-        <div className="font-pixel" style={{ fontSize: 7, color: "var(--moon)", marginBottom: 8, opacity: 0.7 }}>
-          {roadmapData.meta.playerLabel} · LVL {currentIndex + 1}
-        </div>
+
         <div className="mb-1">
           <div
             className="font-pixel flex justify-between"

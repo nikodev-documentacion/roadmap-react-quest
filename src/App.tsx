@@ -96,6 +96,8 @@ export function App() {
         stage={roadmap.current}
         currentIndex={roadmap.currentIndex}
         total={roadmap.total}
+        earnedXP={roadmap.earnedXP}
+        totalXP={roadmap.totalXP}
       />
 
 <SettingsPanel settings={settings} setSetting={setSetting} />
