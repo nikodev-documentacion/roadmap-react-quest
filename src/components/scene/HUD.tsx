@@ -9,7 +9,7 @@ interface HUDProps {
   totalXP: number;
 }
 
-export function HUD({ stage, currentIndex, total, earnedXP, totalXP }: HUDProps) {
+export function HUD({ currentIndex, stage: _s, total: _t, earnedXP, totalXP }: HUDProps) {
   const xpPct = (earnedXP / totalXP) * 100;
   return (
     <div className="absolute top-16 left-4 right-4 z-5 flex gap-4 items-start pointer-events-none">

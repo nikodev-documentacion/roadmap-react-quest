@@ -7,9 +7,8 @@ interface SettingsPanelProps {
 }
 
 const AESTHETICS: { value: Aesthetic; label: string }[] = [
-  { value: "night", label: "Night" },
-  { value: "synthwave", label: "Synth" },
-  { value: "dawn", label: "Dawn" },
+  { value: "night", label: "Noche" },
+  { value: "day", label: "Día" },
 ];
 
 /** Floating gear icon → expanding settings panel */

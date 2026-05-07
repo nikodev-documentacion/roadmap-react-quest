@@ -1,26 +1,13 @@
 import { useEffect, useState } from "react";
 import { type Stage } from "@/data/roadmap-data";
-import { Button } from "@/components/ui/button";
 
 interface ConceptPanelProps {
   stage: Stage;
   currentIndex: number;
   total: number;
-  hasPrev: boolean;
-  hasNext: boolean;
-  onPrev: () => void;
-  onNext: () => void;
 }
 
-export function ConceptPanel({
-  stage,
-  currentIndex,
-  total: _total,
-  hasPrev,
-  hasNext,
-  onPrev,
-  onNext,
-}: ConceptPanelProps) {
+export function ConceptPanel({ stage, currentIndex, total: _total }: ConceptPanelProps) {
   const [typed, setTyped] = useState(0);
   const [showAll, setShowAll] = useState(false);
 
@@ -40,14 +27,7 @@ export function ConceptPanel({
   const allShown = visibleCount >= stage.concepts.length;
 
   return (
-    <div
-      className="absolute bottom-4 left-4 right-4 z-40 grid items-stretch"
-      style={{ gridTemplateColumns: "auto 1fr auto", gap: 16 }}
-    >
-      <Button variant="pixel" onClick={onPrev} disabled={!hasPrev} aria-label="Anterior">
-        ◀ PREV
-      </Button>
-
+    <div className="absolute bottom-4 left-4 right-4 z-40">
       <div
         className="pixel-panel relative"
         style={{ padding: "16px 20px 14px", minHeight: 180 }}
@@ -123,14 +103,10 @@ export function ConceptPanel({
             className="font-pixel absolute"
             style={{ bottom: 8, right: 14, fontSize: 7, color: "var(--moon)", opacity: 0.6 }}
           >
-            {hasNext ? "PRESS NEXT ▶" : "★ FIN DEL VIAJE ★"}
+            ★ FIN DEL VIAJE ★
           </div>
         )}
       </div>
-
-      <Button variant="pixel" onClick={onNext} disabled={!hasNext} aria-label="Siguiente">
-        NEXT ▶
-      </Button>
     </div>
   );
 }

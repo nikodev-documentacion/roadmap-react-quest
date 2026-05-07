@@ -141,8 +141,8 @@ export function PixelTree({ x, scale = 1, dim = false }: PixelTreeProps) {
         <rect x="4" y="14" width="16" height="8" fill="var(--leaf-2)" />
         <rect x="6" y="8" width="12" height="8" fill="var(--leaf-2)" />
         <rect x="8" y="4" width="8" height="6" fill="var(--leaf-3)" />
-        <rect x="10" y="6" width="2" height="2" fill="#7ac290" />
-        <rect x="14" y="14" width="2" height="2" fill="#7ac290" />
+        <rect x="10" y="6" width="2" height="2" fill="var(--leaf-highlight)" />
+        <rect x="14" y="14" width="2" height="2" fill="var(--leaf-highlight)" />
       </svg>
     </div>
   );
@@ -166,7 +166,7 @@ export function ForestBackground() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, var(--night-0) 0%, var(--night-1) 40%, var(--night-2) 75%, var(--leaf-1) 100%)",
+            "linear-gradient(180deg, var(--night-0) 0%, var(--night-1) 40%, var(--night-2) 75%, var(--sky-horizon) 100%)",
         }}
       />
       {stars.map((s, i) => (
@@ -211,7 +211,7 @@ export function ForestBackground() {
       >
         <polygon
           points="0,100 0,60 40,30 80,55 130,20 180,50 240,15 290,45 340,25 400,55 400,100"
-          fill="var(--night-2)"
+          fill="var(--mountain)"
           opacity="0.8"
         />
       </svg>
@@ -224,7 +224,7 @@ export function ForestBackground() {
         className="absolute bottom-0 left-0 right-0"
         style={{
           height: "20%",
-          background: "linear-gradient(180deg, var(--leaf-1) 0%, #1a2818 60%, #0d1408 100%)",
+          background: "linear-gradient(180deg, var(--leaf-1) 0%, var(--ground-mid) 60%, var(--ground-dark) 100%)",
         }}
       >
         <div

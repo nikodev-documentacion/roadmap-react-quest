@@ -96,10 +96,6 @@ export function App() {
         stage={roadmap.current}
         currentIndex={roadmap.currentIndex}
         total={roadmap.total}
-        hasPrev={roadmap.currentIndex > 0}
-        hasNext={roadmap.currentIndex < roadmap.total - 1}
-        onPrev={roadmap.prev}
-        onNext={roadmap.next}
       />
 
 <SettingsPanel settings={settings} setSetting={setSetting} />
