@@ -78,6 +78,7 @@ export function App() {
 
       {/* Distance fog — Silent Hill style: distant stages fade into atmospheric haze */}
       {(() => {
+        if (roadmap.visited.has(roadmap.stages.length - 1)) return null;
         const lastVisible = roadmap.stages[roadmap.currentIndex + 1];
         const firstFogged = roadmap.stages[roadmap.currentIndex + 2];
         if (!firstFogged) return null;
@@ -228,13 +229,20 @@ export function App() {
                   codigo. Es conectar piezas<br />
                   con proposito, sostener la<br />
                   disciplina cuando nadie mira<br />
-                  y crecer junto al equipo.<br />
-                  <br />
-                  Hoy te celebramos.
+                  y crecer junto al equipo.
                 </div>
 
                 <div style={{ width: "75%", height: 1, background: "linear-gradient(90deg, transparent, rgba(100,60,5,0.5), transparent)", margin: "0 auto 10px" }} />
-                <div style={{ fontSize: 18, color: "#b87818", marginBottom: 8 }}>★ ★ ★</div>
+                <div style={{ display: "flex", justifyContent: "center", marginBottom: 8 }}>
+                  <svg viewBox="0 0 40 40" width="48" height="48" style={{ filter: "drop-shadow(0 0 4px #61dafb88)" }}>
+                    <g fill="none" stroke="#1a8aaa" strokeWidth="2">
+                      <ellipse cx="20" cy="20" rx="18" ry="6" />
+                      <ellipse cx="20" cy="20" rx="18" ry="6" transform="rotate(60 20 20)" />
+                      <ellipse cx="20" cy="20" rx="18" ry="6" transform="rotate(120 20 20)" />
+                    </g>
+                    <circle cx="20" cy="20" r="3" fill="#1a8aaa" />
+                  </svg>
+                </div>
                 <div className="font-pixel" style={{ fontSize: 5, color: "#7a4a10", lineHeight: 2, letterSpacing: "0.1em" }}>
                   {roadmap.earnedXP} XP TOTALES · REACT QUEST
                 </div>

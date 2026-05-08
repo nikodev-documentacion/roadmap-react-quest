@@ -234,7 +234,7 @@ export function ForestBackground() {
           opacity="0.8"
         />
       </svg>
-      <div className="absolute left-0 right-0" style={{ bottom: "20%", height: "38%", background: "linear-gradient(180deg, transparent 0%, var(--sky-horizon) 40%, var(--leaf-1) 100%)" }}>
+      <div className="absolute left-0 right-0" style={{ bottom: "20%", height: "38%", background: "linear-gradient(180deg, transparent 0%, transparent 35%, var(--sky-horizon) 70%, var(--leaf-1) 100%)" }}>
         {Array.from({ length: 14 }).map((_, i) => (
           <PixelTree key={i} x={`${i * 8 - 4}%`} scale={1.1 + ((i * 31) % 50) / 100} dim />
         ))}
