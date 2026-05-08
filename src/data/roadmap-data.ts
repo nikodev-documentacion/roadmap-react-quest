@@ -53,8 +53,8 @@ export const roadmapData: RoadmapData = {
   meta: {
     title: "REACT QUEST",
     subtitle: "~ ROADMAP DEL KITSUNE ~",
-    author: "NIKODEV",
-    playerLabel: "REACT NINJA",
+    author: "REACT QUEST",
+    playerLabel: "REACT QUEST",
     totalDurationWeeks: 12, // 8 semanas de stages + 4 semanas proyecto final
     totalEstimatedHours: 80, // Calculado automáticamente más abajo
   },
@@ -66,7 +66,7 @@ export const roadmapData: RoadmapData = {
       biome: "Entrada del bosque",
       description:
         "Aprende a inicializar proyectos React desde cero, entendiendo cada pieza. Sin magia, sin create-react-app: construcción manual para dominar los fundamentos.",
-      xp: 150,
+      xp: 100,
       estimatedHours: 8,
       suggestedWeek: "Semana 1",
       concepts: [
@@ -79,7 +79,7 @@ export const roadmapData: RoadmapData = {
         "🧩 Primer componente funcional",
       ],
       lab: "🎯 LAB: Crear proyecto desde cero + tarjeta de presentación interactiva",
-      position: { x: 8, y: 58 },
+      position: { x: 5, y: 63 },
     },
     {
       id: 2,
@@ -91,6 +91,7 @@ export const roadmapData: RoadmapData = {
       xp: 200,
       estimatedHours: 10,
       suggestedWeek: "Semana 2",
+
       concepts: [
         "🧱 Function Components - anatomía completa",
         "📬 Props: comunicación entre componentes",
@@ -101,7 +102,7 @@ export const roadmapData: RoadmapData = {
         "✅ Validación y tipos",
       ],
       lab: "🎯 LAB: Galería de componentes reutilizables (Card, Button, Avatar, Badge)",
-      position: { x: 18, y: 42 },
+      position: { x: 15, y: 46 },
     },
     {
       id: 3,
@@ -110,7 +111,7 @@ export const roadmapData: RoadmapData = {
       biome: "Río de luciérnagas",
       description:
         "Tu UI cobra vida. Maneja el estado local, responde a eventos del usuario y aprende los patrones fundamentales de interactividad.",
-      xp: 250,
+      xp: 300,
       estimatedHours: 12,
       suggestedWeek: "Semana 3",
       concepts: [
@@ -123,7 +124,7 @@ export const roadmapData: RoadmapData = {
         "🔄 Múltiples estados en un componente",
       ],
       lab: "🎯 LAB: Todo List interactivo con filtros y persistencia local",
-      position: { x: 30, y: 56 },
+      position: { x: 26, y: 60 },
     },
     {
       id: 4,
@@ -132,7 +133,7 @@ export const roadmapData: RoadmapData = {
       biome: "Templo abandonado",
       description:
         "Sincroniza tus componentes con el mundo exterior: APIs, timers, suscripciones. Entiende el ciclo de vida en profundidad.",
-      xp: 300,
+      xp: 400,
       estimatedHours: 12,
       suggestedWeek: "Semana 4",
       concepts: [
@@ -145,7 +146,7 @@ export const roadmapData: RoadmapData = {
         "⚠️ Reglas de los hooks",
       ],
       lab: "🎯 LAB: Pokedex con llamadas a API, búsqueda en tiempo real y timers",
-      position: { x: 42, y: 38 },
+      position: { x: 37, y: 43 },
     },
     {
       id: 5,
@@ -154,7 +155,7 @@ export const roadmapData: RoadmapData = {
       biome: "Cueva de cristales",
       description:
         "Comparte estado entre componentes lejanos sin prop drilling. Aprende cuándo usar Context y cuándo no.",
-      xp: 300,
+      xp: 450,
       estimatedHours: 10,
       suggestedWeek: "Semana 5",
       concepts: [
@@ -167,7 +168,7 @@ export const roadmapData: RoadmapData = {
         "🎯 Context + useReducer para estado complejo",
       ],
       lab: "🎯 LAB: Tema dark/light + carrito de compras con Context API",
-      position: { x: 54, y: 52 },
+      position: { x: 48, y: 58 },
     },
     {
       id: 6,
@@ -176,7 +177,7 @@ export const roadmapData: RoadmapData = {
       biome: "Bosque de bambú",
       description:
         "Extrae lógica reutilizable en hooks propios. El camino del ninja senior: código limpio, reutilizable y testeable.",
-      xp: 350,
+      xp: 500,
       estimatedHours: 10,
       suggestedWeek: "Semana 6",
       concepts: [
@@ -189,7 +190,7 @@ export const roadmapData: RoadmapData = {
         "🎨 Hooks para UI (useToggle, useDebounce, useMedia)",
       ],
       lab: "🎯 LAB: Librería de custom hooks reutilizables + documentación",
-      position: { x: 66, y: 36 },
+      position: { x: 58, y: 42 },
     },
     {
       id: 7,
@@ -198,7 +199,7 @@ export const roadmapData: RoadmapData = {
       biome: "Encrucijada de piedra",
       description:
         "Múltiples páginas, rutas dinámicas, navegación programática. Construye SPAs completas con React Router.",
-      xp: 350,
+      xp: 550,
       estimatedHours: 10,
       suggestedWeek: "Semana 7",
       concepts: [
@@ -211,7 +212,7 @@ export const roadmapData: RoadmapData = {
         "📊 Loaders y actions (React Router v6.4+)",
       ],
       lab: "🎯 LAB: Blog multipage con posts dinámicos, navegación y 404",
-      position: { x: 78, y: 50 },
+      position: { x: 68, y: 57 },
     },
     {
       id: 8,
@@ -220,7 +221,7 @@ export const roadmapData: RoadmapData = {
       biome: "Jardín zen",
       description:
         "Formularios robustos, validación en tiempo real, manejo de errores. Las bases para cualquier aplicación real.",
-      xp: 350,
+      xp: 600,
       estimatedHours: 8,
       suggestedWeek: "Semana 8",
       concepts: [
@@ -233,7 +234,7 @@ export const roadmapData: RoadmapData = {
         "🎨 UX de formularios (disabled, loading states)",
       ],
       lab: "🎯 LAB: Formulario de registro completo con validación y múltiples pasos",
-      position: { x: 88, y: 42 },
+      position: { x: 77, y: 44 },
     },
     {
       id: 9,
@@ -242,7 +243,7 @@ export const roadmapData: RoadmapData = {
       biome: "Montaña sagrada",
       description:
         "Integra todo lo aprendido en un proyecto real. Cuatro semanas para construir, pulir y deployar tu obra maestra.",
-      xp: 500,
+      xp: 900,
       estimatedHours: 40,
       suggestedWeek: "Semanas 9-12",
       concepts: [
@@ -255,7 +256,7 @@ export const roadmapData: RoadmapData = {
         "⏱️ Time management",
       ],
       lab: "🎯 PROYECTO FINAL: Aplicación web completa (E-commerce, Dashboard, Social App, etc.)",
-      position: { x: 92, y: 34 },
+      position: { x: 85, y: 57 },
     },
     {
       id: 10,
@@ -277,7 +278,7 @@ export const roadmapData: RoadmapData = {
         "🎓 Certificación y cierre",
       ],
       lab: "🎯 PRESENTACIÓN: Demo del proyecto + retrospectiva",
-      position: { x: 95, y: 26 },
+      position: { x: 93, y: 43 },
     },
   ],
 };

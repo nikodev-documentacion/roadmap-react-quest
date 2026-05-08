@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export type Aesthetic = "night" | "synthwave" | "dawn";
+export type Aesthetic = "night" | "day";
 
 export interface Settings {
   aesthetic: Aesthetic;
@@ -37,7 +37,7 @@ export function useSettings(): [Settings, <K extends keyof Settings>(key: K, val
   // Apply aesthetic to document root
   useEffect(() => {
     document.documentElement.dataset.aesthetic =
-      settings.aesthetic === "night" ? "" : settings.aesthetic;
+      settings.aesthetic === "night" ? "" : "day";
   }, [settings.aesthetic]);
 
   const setKey = <K extends keyof Settings>(key: K, value: Settings[K]) => {

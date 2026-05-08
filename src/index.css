@@ -14,13 +14,24 @@
     --night-3: #2a3a5e;
     --moon: #f4f1c1;
     --moon-glow: #fffbe0;
-    --leaf-1: #2d5a3d;
-    --leaf-2: #3d7a52;
-    --leaf-3: #5aa372;
+    --sky-horizon: #1a3448;
+    --mountain: #3a5878;
+    --leaf-1: #245a35;
+    --leaf-2: #308050;
+    --leaf-3: #48b868;
+    --leaf-highlight: #70d888;
+    --ground-mid: #1a2818;
+    --ground-dark: #0d1408;
     --trunk: #3d2a1f;
     --fox-orange: #e87a3a;
     --fox-cream: #f4dcb8;
     --fox-dark: #4a2818;
+    --lua-black: #252020;
+    --lua-fur: #4a3e3a;
+    --lua-highlight: #6a5a54;
+    --lua-chest: #7a6860;
+    --lua-eyes: #c87030;
+    --lua-collar: #3a88d0;
     --accent-cyan: #5ae0e0;
     --accent-pink: #e85a8a;
     --xp-gold: #f4c430;
@@ -45,33 +56,31 @@
     --radius: 0px;
   }
 
-  [data-aesthetic="synthwave"] {
-    --night-0: #0a0420;
-    --night-1: #1a0d3a;
-    --night-2: #2d1657;
-    --night-3: #3d2278;
-    --moon: #ff6ec7;
-    --moon-glow: #ffaee5;
-    --leaf-1: #5a2d8a;
-    --leaf-2: #8a4dbf;
-    --leaf-3: #c47aff;
-    --fox-orange: #ff6ec7;
-    --fox-cream: #5ae0ff;
-    --accent-cyan: #5ae0ff;
-    --xp-gold: #ffd93d;
-  }
-
-  [data-aesthetic="dawn"] {
-    --night-0: #1a1410;
-    --night-1: #2a1f18;
-    --night-2: #3d2e22;
-    --night-3: #5a4530;
-    --moon: #ffb86b;
-    --moon-glow: #ffd9a0;
-    --leaf-1: #3d4a1f;
-    --leaf-2: #5a7028;
-    --leaf-3: #8aa840;
-    --xp-gold: #ffb86b;
+  /* Día — bosque a plena luz, cielo azul suave, árboles verdes */
+  [data-aesthetic="day"] {
+    --night-0: #2a5a8a;
+    --night-1: #3a7aaa;
+    --night-2: #4a8aba;
+    --night-3: #5a9aca;
+    --sky-horizon: #a8d4a0;
+    --mountain: #c4a070;
+    --moon: #fff8c0;
+    --moon-glow: #fffbe8;
+    --leaf-1: #2a6020;
+    --leaf-2: #3a8030;
+    --leaf-3: #50a840;
+    --leaf-highlight: #80d060;
+    --ground-mid: #1a4010;
+    --ground-dark: #0e2808;
+    --trunk: #6a4020;
+    --lua-black: #252020;
+    --lua-fur: #4a3e3a;
+    --lua-highlight: #6a5a54;
+    --lua-chest: #7a6860;
+    --lua-eyes: #c87030;
+    --lua-collar: #2a78d0;
+    --accent-cyan: #40b8e0;
+    --xp-gold: #e8b820;
   }
 
   * {
@@ -199,4 +208,43 @@
   0% { transform: translate(-50%, 30px) scale(0.5); opacity: 0; }
   60% { transform: translate(-50%, 0) scale(1.1); opacity: 1; }
   100% { transform: translate(-50%, 0) scale(1); opacity: 1; }
+}
+@keyframes scroll-unfurl {
+  0%   { clip-path: inset(0 0 100% 0); opacity: 0; }
+  8%   { opacity: 1; }
+  100% { clip-path: inset(0 0 0% 0);   opacity: 1; }
+}
+@keyframes scroll-flutter {
+  0%, 100% { transform: rotate(-1.5deg) skewY(0deg); }
+  25%       { transform: rotate(1deg) skewY(0.5deg); }
+  55%       { transform: rotate(0.5deg) skewY(-0.3deg); }
+  80%       { transform: rotate(-0.8deg) skewY(0.2deg); }
+}
+@keyframes day-sweep {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+@keyframes stage-fog-drift {
+  0%, 100% { opacity: 1; transform: scaleY(1); }
+  50%       { opacity: 0.7; transform: scaleY(0.88); }
+}
+@keyframes torch-flicker {
+  0%   { transform: scaleX(1)    scaleY(1)    skewX(0deg);  opacity: 1; }
+  18%  { transform: scaleX(0.84) scaleY(1.15) skewX(-6deg); opacity: 0.88; }
+  36%  { transform: scaleX(1.12) scaleY(0.9)  skewX(5deg);  opacity: 1; }
+  55%  { transform: scaleX(0.88) scaleY(1.12) skewX(-4deg); opacity: 0.92; }
+  74%  { transform: scaleX(1.08) scaleY(0.94) skewX(6deg);  opacity: 0.95; }
+  100% { transform: scaleX(1)    scaleY(1)    skewX(0deg);  opacity: 1; }
+}
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%       { opacity: 1;    transform: scale(1.35); }
+}
+@keyframes torch-spark-l {
+  0%   { transform: translate(0, 0);       opacity: 0.9; }
+  100% { transform: translate(-4px, -13px); opacity: 0; }
+}
+@keyframes torch-spark-r {
+  0%   { transform: translate(0, 0);      opacity: 0.9; }
+  100% { transform: translate(4px, -13px); opacity: 0; }
 }

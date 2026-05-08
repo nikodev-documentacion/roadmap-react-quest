@@ -1,16 +1,12 @@
 import { useMemo } from "react";
 
-interface KitsuneProps {
+interface LuaProps {
   size?: number;
   facing?: "left" | "right";
   state?: "idle" | "walk" | "victory";
 }
 
-/**
- * Kitsune - original ninja-fox character (NOT a copy of any branded character).
- * Pure SVG so it scales crisply with `image-rendering: pixelated`.
- */
-export function Kitsune({ size = 56, facing = "right", state = "idle" }: KitsuneProps) {
+export function Lua({ size = 56, facing = "right", state = "idle" }: LuaProps) {
   const flip = facing === "left" ? "scaleX(-1)" : "scaleX(1)";
   const wrapperAnimation =
     state === "victory"
@@ -30,7 +26,7 @@ export function Kitsune({ size = 56, facing = "right", state = "idle" }: Kitsune
         filter:
           state === "victory"
             ? "drop-shadow(0 0 12px var(--xp-gold)) drop-shadow(0 0 4px var(--moon-glow))"
-            : undefined,
+            : "drop-shadow(1px 0 0 rgba(255,240,200,0.25)) drop-shadow(-1px 0 0 rgba(255,240,200,0.25)) drop-shadow(0 1px 0 rgba(255,240,200,0.25)) drop-shadow(0 -1px 0 rgba(255,240,200,0.25)) drop-shadow(0 2px 6px rgba(0,0,0,0.9))",
       }}
     >
       <svg
@@ -40,7 +36,7 @@ export function Kitsune({ size = 56, facing = "right", state = "idle" }: Kitsune
         shapeRendering="crispEdges"
         style={{ imageRendering: "pixelated", overflow: "visible" }}
       >
-        {/* Victory aura - radiating sparkles */}
+        {/* Victory aura */}
         {state === "victory" && (
           <g style={{ animation: "kitsune-sparkle 1s linear infinite" }}>
             <rect x="4" y="6" width="1" height="1" fill="var(--xp-gold)" />
@@ -51,58 +47,74 @@ export function Kitsune({ size = 56, facing = "right", state = "idle" }: Kitsune
             <rect x="26" y="22" width="1" height="1" fill="var(--moon-glow)" />
           </g>
         )}
-        {/* Tail */}
-        <g style={{ transformOrigin: "10px 22px", animation: "fox-tail 0.6s ease-in-out infinite" }}>
-          <rect x="2" y="18" width="2" height="2" fill="var(--fox-orange)" />
-          <rect x="4" y="17" width="2" height="2" fill="var(--fox-orange)" />
-          <rect x="6" y="18" width="2" height="2" fill="var(--fox-orange)" />
-          <rect x="2" y="20" width="2" height="2" fill="var(--fox-cream)" />
-          <rect x="4" y="19" width="2" height="2" fill="var(--fox-orange)" />
-          <rect x="6" y="20" width="2" height="2" fill="var(--fox-orange)" />
-          <rect x="3" y="16" width="2" height="2" fill="var(--fox-cream)" />
+
+        {/* Tail - fluffy, curled upward (happy dog) */}
+        <g style={{ transformOrigin: "7px 20px", animation: "fox-tail 0.8s ease-in-out infinite" }}>
+          <rect x="5" y="17" width="3" height="5" fill="var(--lua-fur)" />
+          <rect x="3" y="13" width="3" height="5" fill="var(--lua-black)" />
+          <rect x="3" y="9" width="3" height="5" fill="var(--lua-fur)" />
+          <rect x="4" y="7" width="2" height="3" fill="var(--lua-highlight)" />
+          {/* Fluffy texture */}
+          <rect x="4" y="12" width="1" height="1" fill="var(--lua-highlight)" />
+          <rect x="5" y="8" width="1" height="1" fill="var(--lua-highlight)" />
+          <rect x="3" y="16" width="1" height="1" fill="var(--lua-highlight)" />
         </g>
 
         {/* Body */}
-        <rect x="9" y="17" width="12" height="6" fill="var(--fox-orange)" />
-        <rect x="9" y="22" width="12" height="2" fill="var(--fox-dark)" />
-        <rect x="11" y="20" width="8" height="2" fill="var(--fox-cream)" />
+        <rect x="7" y="17" width="13" height="7" fill="var(--lua-black)" />
+        <rect x="7" y="22" width="13" height="2" fill="var(--lua-fur)" />
+        {/* Chest patch (lighter, like in the photo) */}
+        <rect x="8" y="19" width="5" height="4" fill="var(--lua-chest)" />
+        {/* Fur texture */}
+        <rect x="14" y="18" width="2" height="1" fill="var(--lua-fur)" />
+        <rect x="17" y="19" width="2" height="2" fill="var(--lua-fur)" />
+        <rect x="9" y="17" width="1" height="2" fill="var(--lua-fur)" />
 
         {/* Legs */}
-        <rect x="10" y="24" width="2" height="3" fill="var(--fox-dark)" />
-        <rect x="14" y="24" width="2" height="3" fill="var(--fox-dark)" />
-        <rect x="18" y="24" width="2" height="3" fill="var(--fox-dark)" />
-        <rect x="10" y="27" width="2" height="1" fill="#000" />
-        <rect x="14" y="27" width="2" height="1" fill="#000" />
-        <rect x="18" y="27" width="2" height="1" fill="#000" />
+        <rect x="9" y="24" width="2" height="3" fill="var(--lua-fur)" />
+        <rect x="13" y="24" width="2" height="3" fill="var(--lua-fur)" />
+        <rect x="17" y="24" width="2" height="3" fill="var(--lua-fur)" />
+        {/* Paws */}
+        <rect x="9" y="27" width="2" height="1" fill="var(--lua-black)" />
+        <rect x="13" y="27" width="2" height="1" fill="var(--lua-black)" />
+        <rect x="17" y="27" width="2" height="1" fill="var(--lua-black)" />
 
-        {/* Head */}
-        <rect x="18" y="10" width="9" height="8" fill="var(--fox-orange)" />
-        <rect x="20" y="14" width="6" height="3" fill="var(--fox-cream)" />
-        <rect x="25" y="14" width="3" height="2" fill="var(--fox-cream)" />
-        <rect x="27" y="13" width="1" height="1" fill="#000" />
+        {/* Head - rounder than fox */}
+        <rect x="17" y="9" width="11" height="9" fill="var(--lua-black)" />
+        {/* Top rounded */}
+        <rect x="18" y="8" width="9" height="1" fill="var(--lua-black)" />
+        {/* Fur texture on head */}
+        <rect x="18" y="10" width="2" height="1" fill="var(--lua-fur)" />
+        <rect x="22" y="11" width="1" height="1" fill="var(--lua-fur)" />
+        <rect x="20" y="9" width="1" height="1" fill="var(--lua-fur)" />
 
-        {/* Ears */}
-        <rect x="18" y="8" width="2" height="3" fill="var(--fox-orange)" />
-        <rect x="19" y="9" width="1" height="1" fill="var(--fox-cream)" />
-        <rect x="24" y="8" width="2" height="3" fill="var(--fox-orange)" />
-        <rect x="24" y="9" width="1" height="1" fill="var(--fox-cream)" />
+        {/* Muzzle (short, scruffy) */}
+        <rect x="25" y="13" width="4" height="4" fill="var(--lua-fur)" />
+        <rect x="27" y="12" width="2" height="1" fill="var(--lua-fur)" />
+        {/* Nose */}
+        <rect x="28" y="13" width="1" height="1" fill="#0a0505" />
 
-        {/* Ninja headband */}
-        <rect x="17" y="11" width="10" height="2" fill="#c84040" />
-        <rect x="17" y="12" width="10" height="1" fill="#8a2020" />
-        <rect x="16" y="11" width="1" height="3" fill="#c84040" />
-        <rect x="15" y="13" width="1" height="2" fill="#c84040" />
+        {/* Ears - tall and pointy like Lua's */}
+        <rect x="18" y="4" width="3" height="6" fill="var(--lua-black)" />
+        <rect x="19" y="5" width="1" height="4" fill="var(--lua-fur)" />
+        <rect x="23" y="4" width="3" height="6" fill="var(--lua-black)" />
+        <rect x="24" y="5" width="1" height="4" fill="var(--lua-fur)" />
 
-        {/* Eye */}
-        <rect x="22" y="13" width="2" height="1" fill="#000" />
-        <rect x="23" y="13" width="1" height="1" fill="var(--accent-cyan)" style={{ animation: "blink 4s infinite" }} />
+        {/* Eyes - warm amber like Lua's */}
+        <rect x="21" y="12" width="3" height="2" fill="var(--lua-eyes)" />
+        <rect x="22" y="11" width="1" height="1" fill="var(--lua-black)" />
+        <rect x="22" y="13" width="1" height="1" fill="#c86828" style={{ animation: "blink 4s infinite" }} />
 
-        {/* Mask */}
-        <rect x="20" y="15" width="6" height="2" fill="var(--night-2)" opacity="0.6" />
+        {/* Collar - blue like in the photos */}
+        <rect x="18" y="17" width="9" height="1" fill="var(--lua-collar)" />
+        <rect x="22" y="18" width="2" height="1" fill="var(--lua-collar)" />
       </svg>
     </div>
   );
 }
+
+/** @deprecated Use Lua instead */
+export const Kitsune = Lua;
 
 interface PixelTreeProps {
   x: string;
@@ -119,7 +131,7 @@ export function PixelTree({ x, scale = 1, dim = false }: PixelTreeProps) {
         bottom: 0,
         transform: `scale(${scale})`,
         transformOrigin: "bottom center",
-        filter: dim ? "brightness(0.5)" : "none",
+        filter: dim ? "brightness(0.88)" : "none",
       }}
     >
       <svg viewBox="0 0 24 40" width="48" height="80" shapeRendering="crispEdges">
@@ -129,8 +141,8 @@ export function PixelTree({ x, scale = 1, dim = false }: PixelTreeProps) {
         <rect x="4" y="14" width="16" height="8" fill="var(--leaf-2)" />
         <rect x="6" y="8" width="12" height="8" fill="var(--leaf-2)" />
         <rect x="8" y="4" width="8" height="6" fill="var(--leaf-3)" />
-        <rect x="10" y="6" width="2" height="2" fill="#7ac290" />
-        <rect x="14" y="14" width="2" height="2" fill="#7ac290" />
+        <rect x="10" y="6" width="2" height="2" fill="var(--leaf-highlight)" />
+        <rect x="14" y="14" width="2" height="2" fill="var(--leaf-highlight)" />
       </svg>
     </div>
   );
@@ -154,7 +166,7 @@ export function ForestBackground() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, var(--night-0) 0%, var(--night-1) 40%, var(--night-2) 75%, var(--leaf-1) 100%)",
+            "linear-gradient(180deg, var(--night-0) 0%, var(--night-1) 40%, var(--night-2) 75%, var(--sky-horizon) 100%)",
         }}
       />
       {stars.map((s, i) => (
@@ -172,22 +184,41 @@ export function ForestBackground() {
           }}
         />
       ))}
+      {/* Lua language logo — animated */}
       <div
         style={{
           position: "absolute",
-          top: "8%",
-          right: "12%",
-          width: 80,
-          height: 80,
-          animation: "pulse-glow 4s ease-in-out infinite",
+          top: "6%",
+          right: "10%",
+          width: 90,
+          height: 90,
+          filter: "drop-shadow(0 0 10px #3a20ff88)",
         }}
       >
-        <svg viewBox="0 0 16 16" width="80" height="80" shapeRendering="crispEdges">
-          <rect x="4" y="2" width="8" height="12" fill="var(--moon-glow)" />
-          <rect x="2" y="4" width="12" height="8" fill="var(--moon-glow)" />
-          <rect x="3" y="3" width="2" height="1" fill="var(--moon)" />
-          <rect x="10" y="6" width="2" height="2" fill="var(--moon)" opacity="0.6" />
-          <rect x="6" y="9" width="1" height="1" fill="var(--moon)" opacity="0.6" />
+        <svg viewBox="0 0 100 100" width="90" height="90">
+          {/* Dashed orbit ring — rotates */}
+          <circle cx="50" cy="50" r="46" fill="none" stroke="#4455cc" strokeWidth="1.5"
+            strokeDasharray="6 4" opacity="0.5">
+            <animateTransform attributeName="transform" type="rotate"
+              from="0 50 50" to="360 50 50" dur="14s" repeatCount="indefinite"/>
+          </circle>
+
+          {/* Main Lua circle — gentle pulse */}
+          <circle cx="50" cy="50" r="32" fill="#12007d">
+            <animate attributeName="r" values="32;33.5;32" dur="3s" repeatCount="indefinite"/>
+          </circle>
+
+          {/* White highlight */}
+          <circle cx="37" cy="36" r="10" fill="white" opacity="0.92">
+            <animate attributeName="opacity" values="0.92;0.65;0.92" dur="3s" repeatCount="indefinite"/>
+          </circle>
+
+          {/* Small orbiting circle */}
+          <g>
+            <animateTransform attributeName="transform" type="rotate"
+              from="0 50 50" to="360 50 50" dur="8s" repeatCount="indefinite"/>
+            <circle cx="91" cy="50" r="10" fill="#12007d"/>
+          </g>
         </svg>
       </div>
       <svg
@@ -199,20 +230,20 @@ export function ForestBackground() {
       >
         <polygon
           points="0,100 0,60 40,30 80,55 130,20 180,50 240,15 290,45 340,25 400,55 400,100"
-          fill="var(--night-2)"
+          fill="var(--mountain)"
           opacity="0.8"
         />
       </svg>
-      <div className="absolute left-0 right-0" style={{ bottom: "20%", height: "30%" }}>
-        {Array.from({ length: 12 }).map((_, i) => (
-          <PixelTree key={i} x={`${i * 9 - 5}%`} scale={0.6 + ((i * 31) % 40) / 100} dim />
+      <div className="absolute left-0 right-0" style={{ bottom: "20%", height: "38%", background: "linear-gradient(180deg, transparent 0%, transparent 35%, var(--sky-horizon) 70%, var(--leaf-1) 100%)" }}>
+        {Array.from({ length: 14 }).map((_, i) => (
+          <PixelTree key={i} x={`${i * 8 - 4}%`} scale={1.1 + ((i * 31) % 50) / 100} dim />
         ))}
       </div>
       <div
         className="absolute bottom-0 left-0 right-0"
         style={{
           height: "20%",
-          background: "linear-gradient(180deg, var(--leaf-1) 0%, #1a2818 60%, #0d1408 100%)",
+          background: "linear-gradient(180deg, var(--leaf-1) 0%, var(--ground-mid) 60%, var(--ground-dark) 100%)",
         }}
       >
         <div

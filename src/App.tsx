@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRoadmap } from "@/hooks/useRoadmap";
 import { useSettings } from "@/hooks/useSettings";
 import { retroSound } from "@/lib/sound";
-import { ForestBackground, Kitsune } from "@/components/scene/Forest";
+import { ForestBackground, Lua } from "@/components/scene/Forest";
 import { StageMarker } from "@/components/scene/StageMarker";
 import { HUD } from "@/components/scene/HUD";
 import { ConceptPanel } from "@/components/scene/ConceptPanel";
@@ -14,8 +14,30 @@ export function App() {
   const [settings, setSetting] = useSettings();
 
   useEffect(() => {
+    setSetting("aesthetic", "night");
+  }, []);
+
+  useEffect(() => {
     retroSound.muted = !settings.soundEnabled;
   }, [settings.soundEnabled]);
+
+  const [sweeping, setSweeping] = useState(false);
+  const sweptRef = useRef(false);
+
+  useEffect(() => {
+    if (roadmap.isAtFinal && !sweptRef.current) {
+      sweptRef.current = true;
+      const t1 = setTimeout(() => setSweeping(true), 1000);
+      return () => clearTimeout(t1);
+    }
+  }, [roadmap.isAtFinal]);
+
+  useEffect(() => {
+    if (!sweeping) return;
+    const t2 = setTimeout(() => setSetting("aesthetic", "day"), 900);
+    const t3 = setTimeout(() => setSweeping(false), 1800);
+    return () => { clearTimeout(t2); clearTimeout(t3); };
+  }, [sweeping]);
 
   const foxPos = roadmap.current.position;
 
@@ -54,6 +76,41 @@ export function App() {
         })}
       </svg>
 
+      {/* Distance fog — Silent Hill style: distant stages fade into atmospheric haze */}
+      {(() => {
+        if (roadmap.visited.has(roadmap.stages.length - 1)) return null;
+        const lastVisible = roadmap.stages[roadmap.currentIndex + 1];
+        const firstFogged = roadmap.stages[roadmap.currentIndex + 2];
+        if (!firstFogged) return null;
+        const boundary = lastVisible
+          ? (lastVisible.position.x + firstFogged.position.x) / 2
+          : firstFogged.position.x - 4;
+        const isDay = settings.aesthetic === "day";
+        // Fog color must be lighter than the bg to create the "washing out" effect
+        const fog = isDay ? "210,225,238" : "48,68,100";
+        return (
+          <div
+            className="absolute pointer-events-none z-[5]"
+            style={{
+              left: 0,
+              right: 0,
+              top: "36%",
+              height: "44%",
+              background: `linear-gradient(90deg,
+                transparent ${boundary}%,
+                rgba(${fog},0.22) ${boundary + 6}%,
+                rgba(${fog},0.50) ${boundary + 16}%,
+                rgba(${fog},0.72) ${boundary + 28}%,
+                rgba(${fog},0.85) 100%
+              )`,
+              maskImage: "linear-gradient(180deg, transparent 0%, black 16%, black 56%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(180deg, transparent 0%, black 16%, black 56%, transparent 100%)",
+              transition: "background 1s ease",
+            }}
+          />
+        );
+      })()}
+
       {roadmap.stages.map((s, i) => (
         <StageMarker
           key={s.id}
@@ -81,7 +138,7 @@ export function App() {
           filter: "drop-shadow(2px 4px 0 rgba(0,0,0,0.6))",
         }}
       >
-        <Kitsune size={56} facing={roadmap.foxFacing} state={roadmap.foxState} />
+        <Lua size={56} facing={roadmap.foxFacing} state={roadmap.foxState} />
       </div>
 
       <HUD
@@ -96,47 +153,118 @@ export function App() {
         stage={roadmap.current}
         currentIndex={roadmap.currentIndex}
         total={roadmap.total}
-        hasPrev={roadmap.currentIndex > 0}
-        hasNext={roadmap.currentIndex < roadmap.total - 1}
-        onPrev={roadmap.prev}
-        onNext={roadmap.next}
+        earnedXP={roadmap.earnedXP}
+        totalXP={roadmap.totalXP}
       />
 
-      <div
-        className="font-pixel absolute left-1/2 -translate-x-1/2 z-10"
-        style={{ top: 100, fontSize: 6, color: "var(--moon)", opacity: 0.5, letterSpacing: "0.15em" }}
-      >
-        ← → · CLICK STAGE · 1-8 JUMP
-      </div>
+<SettingsPanel settings={settings} setSetting={setSetting} />
 
-      <SettingsPanel settings={settings} setSetting={setSetting} />
+      {/* Day sweep overlay */}
+      {sweeping && (
+        <div
+          className="fixed inset-0 pointer-events-none z-[150]"
+          style={{
+            background: "linear-gradient(90deg, rgba(255,240,120,0) 0%, rgba(255,220,80,0.85) 12%, rgba(255,190,50,1) 30%, rgba(255,230,100,1) 50%, rgba(255,190,50,1) 70%, rgba(255,220,80,0.85) 88%, rgba(255,240,120,0) 100%)",
+            animation: "day-sweep 1.8s ease-in-out forwards",
+          }}
+        />
+      )}
 
-      {/* Victory banner - appears at the final stage */}
+      {/* Victory banner - parchment scroll */}
       {roadmap.isAtFinal && (
         <div
           className="absolute z-[60] pointer-events-none"
-          style={{
-            top: "30%",
-            left: "50%",
-            transform: "translate(-50%, 0)",
-            animation: "victory-banner 0.8s cubic-bezier(.34,1.56,.64,1) forwards",
+          style={{ top: "4%", left: "50%", transform: "translateX(-50%)", width: 300 }}
+        >
+        <div style={{
+            transformOrigin: "top center",
+            animation: "scroll-flutter 4s ease-in-out 1.6s infinite",
+            filter: "drop-shadow(0 10px 28px rgba(0,0,0,0.85))",
           }}
         >
-          <div
-            className="pixel-panel text-center"
-            style={{
-              padding: "14px 28px",
-              background: "var(--night-1)",
-              borderColor: "var(--xp-gold)",
-              boxShadow: "0 0 24px var(--xp-gold), 4px 4px 0 rgba(0,0,0,0.6)",
-            }}
-          >
-            <div className="font-pixel" style={{ fontSize: 14, color: "var(--xp-gold)", marginBottom: 6 }}>
-              ★ ¡VICTORIA! ★
+          {/* Top roller */}
+          <div style={{
+            height: 30,
+            position: "relative",
+            background: "linear-gradient(180deg, #7a4a08 0%, #d49020 20%, #f8c840 50%, #d49020 80%, #7a4a08 100%)",
+            borderRadius: 15,
+            border: "2px solid #5a3406",
+            boxShadow: "0 4px 10px rgba(0,0,0,0.6), inset 0 2px 0 rgba(255,255,255,0.18)",
+            zIndex: 3,
+          }}>
+            <div style={{ position: "absolute", left: -10, top: -3, width: 18, height: 36, background: "radial-gradient(ellipse at 40% 35%, #e8a820, #7a4808)", borderRadius: "50%", border: "2px solid #5a3406" }} />
+            <div style={{ position: "absolute", right: -10, top: -3, width: 18, height: 36, background: "radial-gradient(ellipse at 40% 35%, #e8a820, #7a4808)", borderRadius: "50%", border: "2px solid #5a3406" }} />
+            <div style={{ position: "absolute", inset: "5px 16px", backgroundImage: "repeating-linear-gradient(90deg, transparent 0 12px, rgba(0,0,0,0.12) 12px 13px)" }} />
+          </div>
+
+          {/* Unfurling parchment body */}
+          <div style={{ animation: "scroll-unfurl 1.4s cubic-bezier(.15,0,.25,1) forwards", transformOrigin: "top center", marginTop: -2 }}>
+            <div style={{
+              background: "linear-gradient(160deg, #faeec0 0%, #f4d878 40%, #e8c050 75%, #d8a838 100%)",
+              clipPath: "polygon(3% 0, 97% 0, 100% 2%, 98% 14%, 100% 28%, 99% 44%, 100% 58%, 98% 72%, 100% 86%, 97% 97%, 100% 100%, 0 100%, 3% 97%, 0 86%, 2% 72%, 0 58%, 1% 44%, 0 28%, 2% 14%, 0 2%)",
+              padding: "22px 34px 26px",
+              position: "relative",
+            }}>
+              {/* Horizontal texture */}
+              <div style={{ position: "absolute", inset: 0, pointerEvents: "none", backgroundImage: "repeating-linear-gradient(0deg, transparent 0 20px, rgba(140,90,10,0.07) 20px 21px)" }} />
+              {/* Aged vignette */}
+              <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(110,60,5,0.22) 100%)" }} />
+
+              <div style={{ position: "relative", textAlign: "center" }}>
+                <div className="font-pixel" style={{ fontSize: 6, color: "#6a3a05", letterSpacing: "0.25em", marginBottom: 8 }}>
+                  ✦ CERTIFICADO DE MAESTRIA ✦
+                </div>
+                <div style={{ width: "75%", height: 1, background: "linear-gradient(90deg, transparent, rgba(100,60,5,0.5), transparent)", margin: "0 auto 12px" }} />
+
+                <div className="font-pixel" style={{ fontSize: 12, color: "#3a1800", lineHeight: 1.7, marginBottom: 12 }}>
+                  MISION<br />CUMPLIDA!
+                </div>
+
+                <div style={{ fontFamily: "VT323, monospace", fontSize: 18, color: "#4a2806", lineHeight: 1.65, marginBottom: 14 }}>
+                  Recorriste cada rincon del<br />
+                  bosque y enfrentaste cada<br />
+                  desafio sin rendirte.<br />
+                  <br />
+                  Ser dev no es solo escribir<br />
+                  codigo. Es conectar piezas<br />
+                  con proposito, sostener la<br />
+                  disciplina cuando nadie mira<br />
+                  y crecer junto al equipo.
+                </div>
+
+                <div style={{ width: "75%", height: 1, background: "linear-gradient(90deg, transparent, rgba(100,60,5,0.5), transparent)", margin: "0 auto 10px" }} />
+                <div style={{ display: "flex", justifyContent: "center", marginBottom: 8 }}>
+                  <svg viewBox="0 0 40 40" width="48" height="48" style={{ filter: "drop-shadow(0 0 4px #61dafb88)" }}>
+                    <g fill="none" stroke="#1a8aaa" strokeWidth="2">
+                      <ellipse cx="20" cy="20" rx="18" ry="6" />
+                      <ellipse cx="20" cy="20" rx="18" ry="6" transform="rotate(60 20 20)" />
+                      <ellipse cx="20" cy="20" rx="18" ry="6" transform="rotate(120 20 20)" />
+                    </g>
+                    <circle cx="20" cy="20" r="3" fill="#1a8aaa" />
+                  </svg>
+                </div>
+                <div className="font-pixel" style={{ fontSize: 5, color: "#7a4a10", lineHeight: 2, letterSpacing: "0.1em" }}>
+                  {roadmap.earnedXP} XP TOTALES · REACT QUEST
+                </div>
+              </div>
             </div>
-            <div className="font-pixel" style={{ fontSize: 7, color: "var(--moon-glow)" }}>
-              EL KITSUNE ALCANZÓ LA CIMA
-            </div>
+          </div>
+
+          {/* Bottom roller */}
+          <div style={{
+            height: 22,
+            position: "relative",
+            background: "linear-gradient(180deg, #7a4a08 0%, #d49020 20%, #f8c840 50%, #d49020 80%, #7a4a08 100%)",
+            borderRadius: 11,
+            border: "2px solid #5a3406",
+            boxShadow: "0 4px 10px rgba(0,0,0,0.6), inset 0 2px 0 rgba(255,255,255,0.18)",
+            marginTop: -2,
+            zIndex: 3,
+          }}>
+            <div style={{ position: "absolute", left: -10, top: -4, width: 18, height: 30, background: "radial-gradient(ellipse at 40% 35%, #e8a820, #7a4808)", borderRadius: "50%", border: "2px solid #5a3406" }} />
+            <div style={{ position: "absolute", right: -10, top: -4, width: 18, height: 30, background: "radial-gradient(ellipse at 40% 35%, #e8a820, #7a4808)", borderRadius: "50%", border: "2px solid #5a3406" }} />
+            <div style={{ position: "absolute", inset: "4px 16px", backgroundImage: "repeating-linear-gradient(90deg, transparent 0 12px, rgba(0,0,0,0.12) 12px 13px)" }} />
+          </div>
           </div>
         </div>
       )}
