@@ -14,6 +14,10 @@ export function App() {
   const [settings, setSetting] = useSettings();
 
   useEffect(() => {
+    setSetting("aesthetic", "night");
+  }, []);
+
+  useEffect(() => {
     retroSound.muted = !settings.soundEnabled;
   }, [settings.soundEnabled]);
 
@@ -71,6 +75,40 @@ export function App() {
           );
         })}
       </svg>
+
+      {/* Distance fog — Silent Hill style: distant stages fade into atmospheric haze */}
+      {(() => {
+        const lastVisible = roadmap.stages[roadmap.currentIndex + 1];
+        const firstFogged = roadmap.stages[roadmap.currentIndex + 2];
+        if (!firstFogged) return null;
+        const boundary = lastVisible
+          ? (lastVisible.position.x + firstFogged.position.x) / 2
+          : firstFogged.position.x - 4;
+        const isDay = settings.aesthetic === "day";
+        // Fog color must be lighter than the bg to create the "washing out" effect
+        const fog = isDay ? "210,225,238" : "48,68,100";
+        return (
+          <div
+            className="absolute pointer-events-none z-[5]"
+            style={{
+              left: 0,
+              right: 0,
+              top: "36%",
+              height: "44%",
+              background: `linear-gradient(90deg,
+                transparent ${boundary}%,
+                rgba(${fog},0.22) ${boundary + 6}%,
+                rgba(${fog},0.50) ${boundary + 16}%,
+                rgba(${fog},0.72) ${boundary + 28}%,
+                rgba(${fog},0.85) 100%
+              )`,
+              maskImage: "linear-gradient(180deg, transparent 0%, black 16%, black 56%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(180deg, transparent 0%, black 16%, black 56%, transparent 100%)",
+              transition: "background 1s ease",
+            }}
+          />
+        );
+      })()}
 
       {roadmap.stages.map((s, i) => (
         <StageMarker
