@@ -131,7 +131,7 @@ export function PixelTree({ x, scale = 1, dim = false }: PixelTreeProps) {
         bottom: 0,
         transform: `scale(${scale})`,
         transformOrigin: "bottom center",
-        filter: dim ? "brightness(0.72)" : "none",
+        filter: dim ? "brightness(0.88)" : "none",
       }}
     >
       <svg viewBox="0 0 24 40" width="48" height="80" shapeRendering="crispEdges">
