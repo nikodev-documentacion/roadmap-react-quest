@@ -184,22 +184,41 @@ export function ForestBackground() {
           }}
         />
       ))}
+      {/* Lua language logo — animated */}
       <div
         style={{
           position: "absolute",
-          top: "8%",
-          right: "12%",
-          width: 80,
-          height: 80,
-          animation: "pulse-glow 4s ease-in-out infinite",
+          top: "6%",
+          right: "10%",
+          width: 90,
+          height: 90,
+          filter: "drop-shadow(0 0 10px #3a20ff88)",
         }}
       >
-        <svg viewBox="0 0 16 16" width="80" height="80" shapeRendering="crispEdges">
-          <rect x="4" y="2" width="8" height="12" fill="var(--moon-glow)" />
-          <rect x="2" y="4" width="12" height="8" fill="var(--moon-glow)" />
-          <rect x="3" y="3" width="2" height="1" fill="var(--moon)" />
-          <rect x="10" y="6" width="2" height="2" fill="var(--moon)" opacity="0.6" />
-          <rect x="6" y="9" width="1" height="1" fill="var(--moon)" opacity="0.6" />
+        <svg viewBox="0 0 100 100" width="90" height="90">
+          {/* Dashed orbit ring — rotates */}
+          <circle cx="50" cy="50" r="46" fill="none" stroke="#4455cc" strokeWidth="1.5"
+            strokeDasharray="6 4" opacity="0.5">
+            <animateTransform attributeName="transform" type="rotate"
+              from="0 50 50" to="360 50 50" dur="14s" repeatCount="indefinite"/>
+          </circle>
+
+          {/* Main Lua circle — gentle pulse */}
+          <circle cx="50" cy="50" r="32" fill="#12007d">
+            <animate attributeName="r" values="32;33.5;32" dur="3s" repeatCount="indefinite"/>
+          </circle>
+
+          {/* White highlight */}
+          <circle cx="37" cy="36" r="10" fill="white" opacity="0.92">
+            <animate attributeName="opacity" values="0.92;0.65;0.92" dur="3s" repeatCount="indefinite"/>
+          </circle>
+
+          {/* Small orbiting circle */}
+          <g>
+            <animateTransform attributeName="transform" type="rotate"
+              from="0 50 50" to="360 50 50" dur="8s" repeatCount="indefinite"/>
+            <circle cx="91" cy="50" r="10" fill="#12007d"/>
+          </g>
         </svg>
       </div>
       <svg
