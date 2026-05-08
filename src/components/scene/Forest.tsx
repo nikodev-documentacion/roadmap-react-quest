@@ -131,7 +131,7 @@ export function PixelTree({ x, scale = 1, dim = false }: PixelTreeProps) {
         bottom: 0,
         transform: `scale(${scale})`,
         transformOrigin: "bottom center",
-        filter: dim ? "brightness(0.5)" : "none",
+        filter: dim ? "brightness(0.72)" : "none",
       }}
     >
       <svg viewBox="0 0 24 40" width="48" height="80" shapeRendering="crispEdges">
@@ -234,9 +234,9 @@ export function ForestBackground() {
           opacity="0.8"
         />
       </svg>
-      <div className="absolute left-0 right-0" style={{ bottom: "20%", height: "30%" }}>
-        {Array.from({ length: 12 }).map((_, i) => (
-          <PixelTree key={i} x={`${i * 9 - 5}%`} scale={0.6 + ((i * 31) % 40) / 100} dim />
+      <div className="absolute left-0 right-0" style={{ bottom: "20%", height: "38%", background: "linear-gradient(180deg, transparent 0%, var(--sky-horizon) 40%, var(--leaf-1) 100%)" }}>
+        {Array.from({ length: 14 }).map((_, i) => (
+          <PixelTree key={i} x={`${i * 8 - 4}%`} scale={1.1 + ((i * 31) % 50) / 100} dim />
         ))}
       </div>
       <div

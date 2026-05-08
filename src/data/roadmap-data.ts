@@ -79,7 +79,7 @@ export const roadmapData: RoadmapData = {
         "🧩 Primer componente funcional",
       ],
       lab: "🎯 LAB: Crear proyecto desde cero + tarjeta de presentación interactiva",
-      position: { x: 8, y: 58 },
+      position: { x: 5, y: 63 },
     },
     {
       id: 2,
@@ -102,7 +102,7 @@ export const roadmapData: RoadmapData = {
         "✅ Validación y tipos",
       ],
       lab: "🎯 LAB: Galería de componentes reutilizables (Card, Button, Avatar, Badge)",
-      position: { x: 18, y: 42 },
+      position: { x: 15, y: 46 },
     },
     {
       id: 3,
@@ -124,7 +124,7 @@ export const roadmapData: RoadmapData = {
         "🔄 Múltiples estados en un componente",
       ],
       lab: "🎯 LAB: Todo List interactivo con filtros y persistencia local",
-      position: { x: 30, y: 56 },
+      position: { x: 26, y: 60 },
     },
     {
       id: 4,
@@ -146,7 +146,7 @@ export const roadmapData: RoadmapData = {
         "⚠️ Reglas de los hooks",
       ],
       lab: "🎯 LAB: Pokedex con llamadas a API, búsqueda en tiempo real y timers",
-      position: { x: 42, y: 38 },
+      position: { x: 37, y: 43 },
     },
     {
       id: 5,
@@ -168,7 +168,7 @@ export const roadmapData: RoadmapData = {
         "🎯 Context + useReducer para estado complejo",
       ],
       lab: "🎯 LAB: Tema dark/light + carrito de compras con Context API",
-      position: { x: 54, y: 52 },
+      position: { x: 48, y: 58 },
     },
     {
       id: 6,
@@ -190,7 +190,7 @@ export const roadmapData: RoadmapData = {
         "🎨 Hooks para UI (useToggle, useDebounce, useMedia)",
       ],
       lab: "🎯 LAB: Librería de custom hooks reutilizables + documentación",
-      position: { x: 66, y: 36 },
+      position: { x: 58, y: 42 },
     },
     {
       id: 7,
@@ -212,7 +212,7 @@ export const roadmapData: RoadmapData = {
         "📊 Loaders y actions (React Router v6.4+)",
       ],
       lab: "🎯 LAB: Blog multipage con posts dinámicos, navegación y 404",
-      position: { x: 78, y: 50 },
+      position: { x: 68, y: 57 },
     },
     {
       id: 8,
@@ -234,7 +234,7 @@ export const roadmapData: RoadmapData = {
         "🎨 UX de formularios (disabled, loading states)",
       ],
       lab: "🎯 LAB: Formulario de registro completo con validación y múltiples pasos",
-      position: { x: 88, y: 42 },
+      position: { x: 77, y: 44 },
     },
     {
       id: 9,
@@ -256,7 +256,7 @@ export const roadmapData: RoadmapData = {
         "⏱️ Time management",
       ],
       lab: "🎯 PROYECTO FINAL: Aplicación web completa (E-commerce, Dashboard, Social App, etc.)",
-      position: { x: 92, y: 34 },
+      position: { x: 85, y: 57 },
     },
     {
       id: 10,
@@ -278,7 +278,7 @@ export const roadmapData: RoadmapData = {
         "🎓 Certificación y cierre",
       ],
       lab: "🎯 PRESENTACIÓN: Demo del proyecto + retrospectiva",
-      position: { x: 95, y: 26 },
+      position: { x: 93, y: 43 },
     },
   ],
 };
