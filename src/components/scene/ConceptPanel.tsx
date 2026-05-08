@@ -86,7 +86,7 @@ function Medal({ earned, index }: { earned: boolean; index: number }) {
   );
 }
 
-export function ConceptPanel({ stage, currentIndex, total: _total, earnedXP, totalXP }: ConceptPanelProps) {
+export function ConceptPanel({ stage, currentIndex, total: _total, earnedXP: _earnedXP, totalXP: _totalXP }: ConceptPanelProps) {
   const [typed, setTyped] = useState(0);
   const [showAll, setShowAll] = useState(false);
 
