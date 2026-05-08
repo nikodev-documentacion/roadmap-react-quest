@@ -220,3 +220,7 @@
   55%       { transform: rotate(0.5deg) skewY(-0.3deg); }
   80%       { transform: rotate(-0.8deg) skewY(0.2deg); }
 }
+@keyframes day-sweep {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}

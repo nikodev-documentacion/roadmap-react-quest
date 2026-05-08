@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRoadmap } from "@/hooks/useRoadmap";
 import { useSettings } from "@/hooks/useSettings";
 import { retroSound } from "@/lib/sound";
@@ -16,6 +16,24 @@ export function App() {
   useEffect(() => {
     retroSound.muted = !settings.soundEnabled;
   }, [settings.soundEnabled]);
+
+  const [sweeping, setSweeping] = useState(false);
+  const sweptRef = useRef(false);
+
+  useEffect(() => {
+    if (roadmap.isAtFinal && !sweptRef.current) {
+      sweptRef.current = true;
+      const t1 = setTimeout(() => setSweeping(true), 1000);
+      return () => clearTimeout(t1);
+    }
+  }, [roadmap.isAtFinal]);
+
+  useEffect(() => {
+    if (!sweeping) return;
+    const t2 = setTimeout(() => setSetting("aesthetic", "day"), 900);
+    const t3 = setTimeout(() => setSweeping(false), 1800);
+    return () => { clearTimeout(t2); clearTimeout(t3); };
+  }, [sweeping]);
 
   const foxPos = roadmap.current.position;
 
@@ -101,6 +119,17 @@ export function App() {
       />
 
 <SettingsPanel settings={settings} setSetting={setSetting} />
+
+      {/* Day sweep overlay */}
+      {sweeping && (
+        <div
+          className="fixed inset-0 pointer-events-none z-[150]"
+          style={{
+            background: "linear-gradient(90deg, rgba(255,240,120,0) 0%, rgba(255,220,80,0.85) 12%, rgba(255,190,50,1) 30%, rgba(255,230,100,1) 50%, rgba(255,190,50,1) 70%, rgba(255,220,80,0.85) 88%, rgba(255,240,120,0) 100%)",
+            animation: "day-sweep 1.8s ease-in-out forwards",
+          }}
+        />
+      )}
 
       {/* Victory banner - parchment scroll */}
       {roadmap.isAtFinal && (
