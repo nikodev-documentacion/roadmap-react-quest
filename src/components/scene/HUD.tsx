@@ -22,12 +22,10 @@ export function HUD({ currentIndex: _ci, stage: _s, total: _t, earnedXP, totalXP
         <div className="mb-1">
           <div
             className="font-pixel flex justify-between"
-            style={{ fontSize: 6, color: "var(--moon)", marginBottom: 2 }}
+            style={{ fontSize: 9, color: "var(--moon)", marginBottom: 3 }}
           >
             <span>XP</span>
-            <span>
-              {earnedXP} / {totalXP}
-            </span>
+            <span>{earnedXP} / {totalXP}</span>
           </div>
           <div
             className="relative"

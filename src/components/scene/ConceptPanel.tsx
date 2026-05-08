@@ -128,8 +128,10 @@ export function ConceptPanel({ stage, currentIndex, total: _total, earnedXP, tot
 
         <div className="font-mono mb-3" style={{ fontSize: 20, color: "var(--accent-cyan)", opacity: 0.9 }}>
           ◈ {stage.biome} &nbsp;·&nbsp;
-          <span style={{ color: "var(--xp-gold)" }}>{earnedXP}</span>
-          <span style={{ opacity: 0.55 }}> / {totalXP} XP</span>
+          <span style={{ color: "var(--xp-gold)" }}>{stage.estimatedHours}h</span>
+          <span style={{ opacity: 0.55 }}> · </span>
+          <span style={{ color: "var(--xp-gold)" }}>{stage.concepts.length}</span>
+          <span style={{ opacity: 0.55 }}> encuentros</span>
         </div>
 
         <div className="font-pixel mb-2" style={{ fontSize: 6, color: "var(--moon)", opacity: 0.6 }}>
